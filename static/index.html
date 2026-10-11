@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HP ZGX Research Observatory</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <div class="hp">hp</div>
+      <div>
+        <div class="overline">HP ZGX · NVIDIA-ACCELERATED LOCAL AI</div>
+        <h1>Research Observatory <span>V4</span></h1>
+      </div>
+    </div>
+    <div class="health">
+      <div class="health-item"><i class="dot green"></i><span>AI PATH</span><b>LOCAL</b></div>
+      <div class="health-item"><span>VISION</span><b id="visionState">CHECKING</b></div>
+      <div class="health-item"><span>70B</span><b id="modelState">COLD</b></div>
+      <div class="health-item"><i id="networkDot" class="dot"></i><span>NETWORK</span><b id="networkState">—</b></div>
+    </div>
+  </header>
+
+  <section class="intro">
+    <div>
+      <div class="eyebrow">PERCEIVE · PRIORITIZE · REASON · REMEMBER</div>
+      <h2>See the value of local AI while it works.</h2>
+      <p>Real-time research vision, structured events and 70B reasoning run where the data is created—while the interface makes the operational and economic value visible.</p>
+    </div>
+    <div class="compute">
+      <div><span>GPU</span><b id="gpuUtil">—%</b></div>
+      <div><span>POWER</span><b id="gpuPower">—W</b></div>
+      <div><span>MEMORY</span><b id="memoryUse">—</b></div>
+    </div>
+  </section>
+
+  <section class="value-ribbon">
+    <article><span class="value-icon">01</span><div><small>EXTERNAL AI API CALLS</small><b id="cloudCalls">0</b><p>This application uses local AI endpoints</p></div></article>
+    <article><span class="value-icon">02</span><div><small>VIDEO FRAMES UPLOADED</small><b id="mediaUploads">0</b><p>Research footage stays on-device</p></div></article>
+    <article><span class="value-icon">03</span><div><small>LOCAL VIDEO PROCESSED</small><b id="localMinutes">0.0 min</b><p>Across active research streams</p></div></article>
+    <article><span class="value-icon">04</span><div><small>OFFLINE CONTINUITY</small><b id="offlineProof">READY</b><p>Disconnect networking to prove it</p></div></article>
+  </section>
+
+  <nav class="tabs">
+    <button class="tab active" data-mode="lab"><span>01</span><div><b>Autonomous Research Lab</b><small>Interactive physical workflow</small></div></button>
+    <button class="tab" data-mode="command"><span>02</span><div><b>Multi-Lab Command Center</b><small>Four concurrent environments</small></div></button>
+  </nav>
+
+  <section class="controls">
+    <div id="sourceControl" class="source">
+      <label>LIVE SOURCE</label>
+      <select id="sourceSelect"></select>
+    </div>
+    <button id="startBtn" class="btn primary">Start Live Lab</button>
+    <button id="stopBtn" class="btn quiet" disabled>Stop</button>
+    <button id="resetBtn" class="btn quiet">Reset Workflow</button>
+    <div class="grow"></div>
+    <label class="toggle"><input id="autoReason" type="checkbox"><span></span>AUTO INSIGHT</label>
+    <button id="prewarmBtn" class="btn nvidia">Prewarm 70B</button>
+  </section>
+
+  <div id="offlineBanner" class="offline hidden">
+    <strong>NETWORK OFFLINE</strong>
+    <span>Local vision, workflow tracking, reasoning and memory remain available.</span>
+  </div>
+
+  <main class="workspace lab-mode" id="workspace">
+    <section class="stage">
+      <div class="panel-title">
+        <div><small id="stageKicker">LIVE LOCAL VISION</small><h3 id="stageTitle">Autonomous Research Lab</h3></div>
+        <span id="runState" class="status">READY</span>
+      </div>
+      <div id="feedGrid" class="feed-grid lab"></div>
+      <div id="emptyStage" class="empty">
+        <div class="empty-mark"></div>
+        <h4>Ready to run locally</h4>
+        <p>Start the live research bench or switch to the Command Center.</p>
+      </div>
+    </section>
+
+    <aside class="right">
+      <section class="insight-card">
+        <div class="panel-title">
+          <div><small>LLAMA 3.1 70B · LOCAL</small><h3>Decision Insight</h3></div>
+          <span id="reasonState" class="status">IDLE</span>
+        </div>
+        <div class="insight-headline" id="insightHeadline">Ready for a local insight</div>
+        <div class="insight-block"><label>WHAT CHANGED</label><p id="insightObservation">Start a demo and let the event engine build context.</p></div>
+        <div class="insight-block"><label>WHY IT MATTERS</label><p id="insightImpact">The reasoning layer prioritizes the highest-signal change instead of describing every frame.</p></div>
+        <div class="insight-block local"><label>LOCAL AI ADVANTAGE</label><p id="insightLocal">Vision, reasoning and memory are designed to execute on the Nano.</p></div>
+        <div id="valueLevers" class="chips"></div>
+        <div class="next-action"><span>NEXT</span><p id="insightNext">Start a feed, then generate an insight after a meaningful event.</p></div>
+        <button id="analyzeBtn" class="btn insight">Generate Local Insight</button>
+      </section>
+
+      <section id="workflowPanel" class="workflow-card">
+        <div class="panel-title">
+          <div><small>PHYSICAL WORKFLOW</small><h3>Specimen A</h3></div>
+          <span id="workflowState" class="status">WAITING</span>
+        </div>
+        <div class="current-zone"><span>Current zone</span><b id="specimenZone">NOT SEEN</b></div>
+        <div class="steps">
+          <div id="stepPrep" class="step"><i>1</i><span>PREP</span><b id="timePrep">—</b></div>
+          <div class="line"></div>
+          <div id="stepAnalysis" class="step"><i>2</i><span>ANALYSIS</span><b id="timeAnalysis">—</b></div>
+          <div class="line"></div>
+          <div id="stepComplete" class="step"><i>3</i><span>COMPLETE</span><b id="timeComplete">—</b></div>
+        </div>
+        <div class="mini-row"><span>Participant dwell · Analysis</span><b id="dwellTime">0.0s</b></div>
+        <span>Use an authorized local specimen marker</span>
+      </section>
+    </aside>
+  </main>
+
+  <section class="roi-section">
+    <div class="roi-copy">
+      <small>LOCAL AI VALUE MODEL</small>
+      <h3>Turn the demo into a business case.</h3>
+      <p>The proof above is measured by this session. The dollar model uses <b>your own assumptions</b>—not vendor pricing or invented savings.</p>
+      <div class="proof-grid">
+        <div><span>Local vision inferences</span><b id="visionCount">0</b></div>
+        <div><span>Significant events surfaced</span><b id="significantCount">0</b></div>
+        <div><span>Local 70B insights</span><b id="reasonCount">0</b></div>
+        <div><span>External AI API calls</span><b>0</b></div>
+      </div>
+    </div>
+    <div class="roi-inputs">
+      <label>Cloud / hosted AI workload cost per month <span>$</span><input id="cloudMonthly" type="number" min="0" step="100" placeholder="Enter your cost"></label>
+      <label>Share of workload moved local <span>%</span><input id="shiftPct" type="number" min="0" max="100" step="5" value="80"></label>
+      <label>Estimated local operating cost per month <span>$</span><input id="localMonthly" type="number" min="0" step="25" placeholder="Enter your cost"></label>
+      <label>One-time ZGX investment <span>$</span><input id="investment" type="number" min="0" step="500" placeholder="Enter investment"></label>
+      <p class="assumption-note">Illustrative calculator only. Use your organization's actual workload, infrastructure, energy, software and support costs.</p>
+    </div>
+    <div class="roi-results">
+      <div><small>EST. MONTHLY SAVINGS</small><b id="monthlySavings">—</b></div>
+      <div><small>EST. ANNUAL SAVINGS</small><b id="annualSavings">—</b></div>
+      <div><small>EST. PAYBACK</small><b id="payback">—</b></div>
+      <div class="highlight"><small>3-YEAR NET VALUE</small><b id="net3yr">—</b></div>
+    </div>
+  </section>
+
+  <section class="details">
+    <details open>
+      <summary><span>Event Timeline</span><b id="eventCount">0 EVENTS</b></summary>
+      <div id="eventList" class="events"><div class="event-empty">Start a demo to begin the event timeline.</div></div>
+    </details>
+    <details>
+      <summary><span>Semantic Event Memory</span><b>LOCAL NOMiC</b></summary>
+      <div class="memory">
+        <p>Search significant events by meaning instead of exact keywords.</p>
+        <div><input id="memoryQuery" placeholder="e.g. when did activity change from baseline?"><button id="memoryBtn" class="btn quiet">Search</button></div>
+        <div id="memoryResults"></div>
+      </div>
+    </details>
+  </section>
+
+  <footer>
+    <span>HP ZGX Research Observatory V4 · Demonstration software</span>
+    <span>Local AI proof-of-concept · Not a certified laboratory, safety or compliance system.</span>
+  </footer>
+</div>
+<div id="toast" class="toast hidden"></div>
+<script src="/static/app.js"></script>
+</body>
+</html>

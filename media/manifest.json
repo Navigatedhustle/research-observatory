@@ -1,0 +1,42 @@
+[
+  {
+    "file": "research_lab_overview_720p.mp4",
+    "name": "Research Collaboration Lab",
+    "discipline": "RESEARCH OPERATIONS",
+    "slot": 1,
+    "detection_mode": "people_objects",
+    "conf_threshold": 0.30,
+    "fit": "cover",
+    "enhance_inference": false
+  },
+  {
+    "file": "wet_lab_process_720p.mp4",
+    "name": "Wet Lab Operations",
+    "discipline": "LIFE SCIENCES",
+    "slot": 2,
+    "detection_mode": "people_objects",
+    "conf_threshold": 0.29,
+    "fit": "cover",
+    "enhance_inference": false
+  },
+  {
+    "file": "controlled_lab_process_720p.mp4",
+    "name": "Collaborative Experiment",
+    "discipline": "RESEARCH WORKFLOW",
+    "slot": 3,
+    "detection_mode": "people_objects",
+    "conf_threshold": 0.24,
+    "fit": "cover",
+    "enhance_inference": false
+  },
+  {
+    "file": "advanced_manufacturing_720p.mp4",
+    "name": "Advanced Manufacturing",
+    "discipline": "ENGINEERING OPERATIONS",
+    "slot": 4,
+    "detection_mode": "people_only",
+    "conf_threshold": 0.25,
+    "fit": "cover",
+    "enhance_inference": true
+  }
+]

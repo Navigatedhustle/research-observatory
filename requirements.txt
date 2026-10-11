@@ -1,0 +1,8 @@
+fastapi==0.141.1
+uvicorn==0.52.1
+numpy==2.4.6
+pycuda==2026.1
+opencv-python-headless==4.13.0.92
+
+# GPU detection is optional for mock/control-plane review. Install the platform-compatible
+# TensorRT distribution matching the NVIDIA stack separately; pycuda is pinned above.
